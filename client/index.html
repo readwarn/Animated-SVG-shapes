@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Shapes</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>ANIMATED SVG SHAPES</h1>
+            <button @click="pallete=true" class="add">Add New Shape</button>
+            <div class="selection-overlay" v-if="pallete" @click.self="pallete=false">
+                <div class="selection">
+                    <label for="shape">Select shape type</label>
+                    <select name="shape" id="shape" v-model="type">
+                            <option value="polygon">Polygon</option>
+                            <option value="circle"> Circle</option>
+                            <option value="ellipsis">Ellipsis</option>
+                    </select>
+                    <label for="shape" v-if='type==="polygon"'>Input number of sides</label>
+                    <input type="number" placeholder="number of sides" v-if='type==="polygon"' v-model="sides">
+                    <label for="shape" v-if='type==="circle"'>Input radius <span>{{errorR}}</span></label>
+                    <input type="number" min="1" max="140" placeholder="radius" v-if='type==="circle"' v-model="radius">
+                    <label for="shape"  v-if='type==="ellipsis"'>Input radiusX <span>{{errorRx}}</span></label>
+                    <input type="number" min="1" max="140" placeholder="radius x" v-if='type==="ellipsis"' v-model="rx">
+                    <label for="shape" v-if='type==="ellipsis"'>Input radiusY <span>{{errorRy}}</span></label>
+                    <input type="number" min="1" max="140" placeholder="radius y" v-if='type==="ellipsis"' v-model="ry">
+                    <button @click='draw'>Draw</button>
+                </div>
+            </div>
+            <div class="shapes" v-if="shapes[0]">
+                <div class="chevron">
+                    <i class="fas fa-caret-left slide"  @click="slide('left')"></i>
+                    <i class="fas fa-caret-right slide" @click="slide('right')"></i>
+                </div>
+                <div class="shape" v-for="shape in shapes.slice().reverse()" :key="shape.key" :style="shapeTranslate">
+                    <svg  version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <circle  :style="shape.dash"  class="draw" cx="150" cy="150" :r="shape.radius" :stroke="shape.color" fill="transparent" stroke-width="3" v-if="shape.type==='circle'"/>
+                        <ellipse :style="shape.dash"  class="draw" cx="150" cy="150" :rx="shape.rx" :ry="shape.ry" :stroke="shape.color" fill="transparent" stroke-width="3" v-if="shape.type==='ellipsis'"/>
+                        <polygon :style="shape.dash"  class="draw" :points="shape.points" :stroke="shape.color" fill="transparent" stroke-width="3" v-if="shape.type==='polygon'"/>
+                    </svg>
+                    <div class="input-container">
+                        <div class="input">
+                            <label for="color">Stroke Color</label>
+                            <input type="color" class="color" v-model="shape.color" id="color">
+                        </div>
+                        <div class="input" v-if="shape.type==='polygon'" >
+                            <label for="myRange">Length</label>
+                            <input  type="range" min="1" max="140" value="130" class="slider" id="myRange" @input="resizeL($event,shape.key)" class="slider">
+                        </div>
+                        <div class="input" v-if="shape.type==='circle'"  >
+                           <label for="myRange">Radius</label>
+                           <input  type="range" min="1" max="140" :value="shape.radius" class="slider" id="myRange" @input="resizeR($event,shape.key)" class="slider">
+                       </div>
+                       <div class="input"  v-if="shape.type==='ellipsis'">
+                           <label for="myRange">RadiusX</label>
+                           <input type="range" min="1" max="140" :value="shape.rx" class="slider" id="myRange" @input="resizeRx($event,shape.key)" class="slider">
+                       </div>
+                       <div class="input" v-if="shape.type==='ellipsis'" >
+                           <label for="myRange">RadiusY</label>
+                           <input type="range" min="1" max="140" :value="shape.ry" class="slider" id="myRange" @input="resizeRy($event,shape.key)" class="slider">
+                       </div> 
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

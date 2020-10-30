@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;0,700;1,300&display=swap');
+*{
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Josefin Sans', sans-serif;
+    background: #7835C0;
+    overflow-x: hidden;
+}
+div#app{
+    padding: 1rem 0rem;
+}
+
+h1{
+    font-size: 3rem;
+    text-align: center;
+    font-weight: 700;
+    margin: 0;
+    text-align: center;
+}
+input,select, button{
+    display: block;
+    margin-bottom: 1rem;
+}
+input,select,button{
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    outline: none;
+    border: 1.5px solid black;
+}
+button{
+    width: 70%;
+    margin: auto;
+}
+button.add{
+    width: 30%;
+    margin: 1.5rem auto;
+}
+button:hover{
+    border-color:#7835C0;
+}
+
+div.selection{
+    width: 50%;
+    border: rgb(17, 17, 17) 1px solid;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    background: white;
+}
+div.selection-overlay{
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    z-index: 10;
+    align-items: center;
+    background-color: rgba(42, 42, 43, 0.85);
+    justify-content: center;
+}
+svg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+}
+div.shapes{
+    display: flex;
+    position: relative;
+    align-items: center;
+    overflow-x: hidden;
+    border: rgb(8, 8, 8) 1.7px solid;
+    padding: 1rem 1.7rem;
+}
+span{
+    color: red;
+}
+div.input-container{
+    width: 95%;
+    margin: auto;
+    border: rgb(7, 7, 7) 1.5px solid;
+}
+div.input{
+   padding: 0rem 0.6rem;
+   display: flex;
+   height: 45px;
+   align-items: center;
+   border: rgb(2, 2, 2) 1px solid;
+}
+div.input label{
+    width: 35%;
+    margin-right: 2%;
+}
+div.input input{
+    width: 63%;
+    transform: translateY(6px);
+}
+div.shape{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius:1rem;
+    width: 300px;
+    height: 450px;
+    position: relative;
+    transition: all ease 1.2s;
+    margin-right: 10px;
+    border: 1.5px solid  black;
+    background: #03c4a1;   
+}
+/* div.input input.color{
+    width: 10%;
+} */
+div.chevron{
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin: auto;
+    box-sizing: border-box;
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+}
+i.slide{
+    font-size: 4rem;
+    color: #150485;
+    cursor: pointer;
+    transition: all ease 0.3s;
+}
+i.slide:hover{
+    transform: scale(1.3);
+    
+}
+
+.draw{
+   animation: draw 1.5s ease-in-out forwards;
+}
+@keyframes draw{
+    to{
+        stroke-dashoffset: 0;
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    div.selection{
+        width: 70%;
+    }
+  }
