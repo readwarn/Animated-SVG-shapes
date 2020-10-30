@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;0,700;1,300&display=swap');
+*{
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Josefin Sans', sans-serif;
+    background: #7835C0;
+}
+div#app{
+    width: 90%;
+    margin: auto;
+    padding: 1rem 0rem;
+}
+
+h1{
+    font-size: 3rem;
+    text-align: center;
+    font-weight: 700;
+    margin: 0;
+    text-align: center;
+}
+input,select, button{
+    display: block;
+    margin-bottom: 1rem;
+}
+input,select,button{
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    outline: none;
+    border: 1.5px solid black;
+}
+button{
+    width: 70%;
+    margin: auto;
+}
+button:hover{
+    border-color:#7835C0;
+}
+
+div.selection{
+    border: rgb(17, 17, 17) 1px solid;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    background: rgb(145, 53, 236);
+    margin-bottom: 1.5rem;
+}
+svg{
+    display: block;
+    width: 300px;
+    height: 300px;
+}
+div.shapes{
+    display: flex;
+    align-items: center;
+    overflow-x: hidden;
+    border: rgb(8, 8, 8) 1.7px solid;
+    padding: 1rem;
+}
+div.shape{
+    border: red 1px solid;
+    width: 300px;
+    position: relative;
+    transition: all ease-in-out 0.4s;
+    margin-right: 10px;
+}
+input.color{
+    width: 10%;
+    margin: auto;
+    background-color: steelblue;
+}
+.draw{
+   animation: draw 1.5s ease-in-out forwards;
+}
+@keyframes draw{
+    to{
+        stroke-dashoffset: 0;
+    }
+}
