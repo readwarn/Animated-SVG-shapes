@@ -6,6 +6,7 @@
     <title>SVG Shapes</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js" integrity="sha512-DZqqY3PiOvTP9HkjIWgjO6ouCbq+dxqWoJZ/Q+zPYNHmlnI2dQnbJ5bxAHpAMw+LXRm4D72EIRXzvcHQtE8/VQ==" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
@@ -31,7 +32,10 @@
                     <button @click='draw'>Draw</button>
                 </div>
             </div>
-            <div class="shapes" v-if="shapes[0]">
+            <div class="loader" v-if="loading">
+                 <img src="loader.svg" alt="loader">
+            </div>
+            <div class="shapes" v-if="!loading">
                 <div class="chevron">
                     <i class="fas fa-caret-left slide"  @click="slide('left')"></i>
                     <i class="fas fa-caret-right slide" @click="slide('right')"></i>

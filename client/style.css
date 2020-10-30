@@ -78,6 +78,17 @@ div.shapes{
 span{
     color: red;
 }
+div.loader{
+    position: absolute;
+    width: 90%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 div.input-container{
     width: 95%;
     margin: auto;

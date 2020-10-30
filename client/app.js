@@ -1,8 +1,8 @@
-
 app=new Vue({
     el:'#app',
     data:{
         points:'',
+        loading:true,
         errorR:'',
         errorRx:'',
         errorRy:'',
@@ -69,6 +69,9 @@ app=new Vue({
                      }
                  }
                  this.shapes.push(shape);
+                 axios.post('https://vast-lake-07220.herokuapp.com/shapes',shape).then((response)=>{
+                     console.log(shape);
+                 })
             }  
             else if(this.type==='ellipsis'){
                 const shape={
@@ -83,6 +86,9 @@ app=new Vue({
                     }
                 }
                 this.shapes.push(shape);
+                axios.post('https://vast-lake-07220.herokuapp.com/shapes',shape).then((response)=>{
+                     console.log(shape);
+                 })
             }else{
                 const shape={
                     key:this.key,
@@ -95,6 +101,9 @@ app=new Vue({
                     }
                 }
                 this.shapes.push(shape);
+                 axios.post('https://vast-lake-07220.herokuapp.com/shapes',shape).then((response)=>{
+                     console.log(shape);
+                 });
             }
             this.key++;
           }
@@ -147,4 +156,12 @@ app=new Vue({
             }
         }
     },
+    created(){
+        axios.get('https://vast-lake-07220.herokuapp.com/shapes').then(response=>{
+            this.shapes=response.data;
+            this.loading=false;
+            this.key=response.data.length;
+            console.log(response.data);
+        })
+    }
 })

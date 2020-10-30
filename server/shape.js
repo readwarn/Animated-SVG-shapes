@@ -6,6 +6,9 @@ const shapeSchema=new mongoose.Schema({
      type:String,
      color:String,
      sides:Number,
+     rx:Number,
+     ry:Number,
+     radius:Number,
      dash:{
         strokeDasharray:Number,
         strokeDashoffset:Number
