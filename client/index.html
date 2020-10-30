@@ -33,9 +33,9 @@
                 </div>
             </div>
             <div class="loader" v-if="loading">
-                 <img src="loader.svg" alt="loader">
+                 <img src="./assets/loader.svg" alt="loader">
             </div>
-            <div class="shapes" v-if="!loading">
+            <div class="shapes" v-if="!loading && shapes[0]">
                 <div class="chevron">
                     <i class="fas fa-caret-left slide"  @click="slide('left')"></i>
                     <i class="fas fa-caret-right slide" @click="slide('right')"></i>
