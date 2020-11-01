@@ -53,6 +53,16 @@ app.delete('/shapes',(req,res)=>{
     });
 })
 
+app.delete('/shapes/:key',(req,res)=>{
+  Shape.findOneAndDelete({key:req.params.key},function(err,deletedshape){
+    if(err){
+      res.send('error deleting shape');
+    }else{
+      res.send(deletedshape);
+    }
+  })
+})
+
 app.listen(process.env.PORT || 3000,function(){
     console.log("running");
 });

@@ -1,3 +1,4 @@
+
 app=new Vue({
     el:'#app',
     data:{
@@ -12,7 +13,6 @@ app=new Vue({
         ry:100,
         type:'polygon',
         shapes:[],
-        key:0,
         shift:0,
         pallete:false,
         shapeTranslate:{
@@ -58,7 +58,7 @@ app=new Vue({
             this.shift=0;
             if(this.type==='polygon'){
                  const shape={
-                     key:this.key,
+                     key:Math.floor(Math.random() * 100)+""+Date.now(),
                      points:this.getPoints(this.sides,130),
                      type:'polygon',
                      color:"#000000",
@@ -70,12 +70,11 @@ app=new Vue({
                  }
                  this.shapes.push(shape);
                  axios.post('https://vast-lake-07220.herokuapp.com/shapes',shape).then((response)=>{
-                     console.log(shape);
                  })
             }  
             else if(this.type==='ellipsis'){
                 const shape={
-                    key:this.key,
+                    key:Math.floor(Math.random() * 100)+""+Date.now(),
                     type:'ellipsis',
                     color:"#000000",
                     rx:this.rx,
@@ -87,11 +86,11 @@ app=new Vue({
                 }
                 this.shapes.push(shape);
                 axios.post('https://vast-lake-07220.herokuapp.com/shapes',shape).then((response)=>{
-                     console.log(shape);
+        
                  })
             }else{
                 const shape={
-                    key:this.key,
+                    key:Math.floor(Math.random() * 100)+""+Date.now(),
                     radius:this.radius,
                     color:"#000000",
                     type:'circle',
@@ -100,12 +99,11 @@ app=new Vue({
                       strokeDashoffset:this.circumference(this.radius)
                     }
                 }
-                this.shapes.push(shape);
+                 this.shapes.push(shape);
                  axios.post('https://vast-lake-07220.herokuapp.com/shapes',shape).then((response)=>{
-                     console.log(shape);
+                
                  });
             }
-            this.key++;
           }
         },
         polygonPerimeter(n,r){
@@ -147,21 +145,25 @@ app=new Vue({
         },
         slide(direction){
             if(direction==='left'){
-                this.shift-=280;
+                this.shift-=310;
                 this.shapeTranslate.transform=`translateX(${this.shift}px)`
             }
             else{
-                this.shift+=280;
+                this.shift+=310;
                 this.shapeTranslate.transform=`translateX(${this.shift}px)`
             }
+        },
+        deleteShape(shape,index){
+            this.shapes.splice(index,1);
+            axios.delete(`https://vast-lake-07220.herokuapp.com/shapes/${shape.key}`).then(response=>{
+                console.log(response.data);
+            })
         }
     },
     created(){
         axios.get('https://vast-lake-07220.herokuapp.com/shapes').then(response=>{
             this.shapes=response.data;
             this.loading=false;
-            this.key=response.data.length;
-            console.log(response.data);
         })
     }
 })
