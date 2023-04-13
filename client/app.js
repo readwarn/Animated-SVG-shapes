@@ -71,7 +71,7 @@ app = new Vue({
           };
           this.shapes.push(shape);
           axios
-            .post("https://svg-shapes.onrender.com/p.com/shapes", shape)
+            .post("https://svg-shapes.onrender.com/shapes", shape)
             .then((response) => {});
         } else if (this.type === "ellipsis") {
           const shape = {
@@ -87,7 +87,7 @@ app = new Vue({
           };
           this.shapes.push(shape);
           axios
-            .post("https://svg-shapes.onrender.com/p.com/shapes", shape)
+            .post("https://svg-shapes.onrender.com/shapes", shape)
             .then((response) => {});
         } else {
           const shape = {
@@ -102,7 +102,7 @@ app = new Vue({
           };
           this.shapes.push(shape);
           axios
-            .post("https://svg-shapes.onrender.com/p.com/shapes", shape)
+            .post("https://svg-shapes.onrender.com/shapes", shape)
             .then((response) => {});
         }
       }
@@ -177,18 +177,16 @@ app = new Vue({
     deleteShape(shape, index) {
       this.shapes.splice(index, 1);
       axios
-        .delete(`https://svg-shapes.onrender.com/p.com/shapes/${shape.key}`)
+        .delete(`https://svg-shapes.onrender.com/shapes/${shape.key}`)
         .then((response) => {
           console.log(response.data);
         });
     },
   },
   created() {
-    axios
-      .get("https://svg-shapes.onrender.com/p.com/shapes")
-      .then((response) => {
-        this.shapes = response.data;
-        this.loading = false;
-      });
+    axios.get("https://svg-shapes.onrender.com/shapes").then((response) => {
+      this.shapes = response.data;
+      this.loading = false;
+    });
   },
 });
